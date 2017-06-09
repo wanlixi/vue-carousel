@@ -22,7 +22,6 @@
 </template>
 <script type="text/babel">
 import $ from 'jquery'
-import {otherCase} from '~assets/services/case/othercase'
 export default {
   data () {
   	return {
