@@ -73,13 +73,11 @@ export default {
     }
   },
   destroyed () {//生命周期：实例被销毁之后出发
-    let self =this;
-    clearInterval(self.timerCase);
+    clearInterval(this.timerCase);
   },
   methods:{
   	autoPlayCase () {//自动轮播
-      let self = this;
-      self.timerCase = setInterval(function () {
+      this.timerCase = setInterval(function () {
         self.selectedCase++;
         if (self.selectedCase > self.currentCase.length-3){
           self.selectedCase = 0
@@ -88,35 +86,30 @@ export default {
       },3000)
     },
     caseScroll () {//上下页操作
-      let self = this;
-      if (self.selectedCase < 0) {
-          self.selectedCase = 0
+      if (this.selectedCase < 0) {
+          this.selectedCase = 0
       }
-      if (self.selectedCase > self.currentCase.length - 3) {
-          self.selectedCase = self.currentCase.length - 3
+      if (this.selectedCase > this.currentCase.length - 3) {
+          this.selectedCase = this.currentCase.length - 3
       }
-      $(".case-discuss-cont:visible").animate({left: -self.selectedCase * 360}, 500)
+      $(".case-discuss-cont:visible").animate({left: -this.selectedCase * 360}, 500)
     },
     mouseoverCase () {//鼠标进入暂停轮播
-      let self = this;
-      clearInterval(self.timerCase);
+      clearInterval(this.timerCase);
     },
     nextCase () {//下一页
-      let self = this;
-      self.selectedCase++;
-      self.caseScroll();
+      this.selectedCase++;
+      this.caseScroll();
     },
     lastCase () {//下一页
-      let self = this;
-      self.selectedCase--;
-      self.caseScroll();
+      this.selectedCase--;
+      this.caseScroll();
     },
     clickCase (item) {
-      let self = this;
       if (window.location.href.indexOf('case') > -1) {
-        self.$emit('change-case',item.caseId);
+        this.$emit('change-case',item.caseId);
       } else {
-        self.$router.push({name:'case-caseId',params:{caseId: item.caseId}})
+        this.$router.push({name:'case-caseId',params:{caseId: item.caseId}})
       }
     }
   }
